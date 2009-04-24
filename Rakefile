@@ -5,7 +5,7 @@ require 'rake'
 require 'find'
 require 'pathname'
 
-IGNORE = [/\.gitignore$/, /Rakefile$/]
+IGNORE = [/\.gitignore$/, /Rakefile$/, /README.*$/]
 
 files = `git ls-files`.split("\n")
 files.reject! { |f| IGNORE.any? { |re| f.match(re) } }
