@@ -27,12 +27,12 @@ end
 desc 'Install plugin and documentation'
 task :install do
   vimperatorfiles = if ENV['VIMPERATORFILES']
-               ENV['VIMPERATORFILES']
-             elsif RUBY_PLATFORM =~ /(win|w)32$/
-               File.expand_path("~/vimperatorfiles")
-             else
-               File.expand_path("~/.vimperator")
-             end
+                      ENV['VIMPERATORFILES']
+                    elsif RUBY_PLATFORM =~ /(win|w)32$/
+                      File.expand_path("~/vimperatorfiles")
+                    else
+                      File.expand_path("~/.vimperator")
+                    end
   files.each do |file|
     target_file = File.join(vimperatorfiles, file)
     FileUtils.mkdir_p File.dirname(target_file)
@@ -57,12 +57,12 @@ end
 desc 'Uninstall plugin and documentation'
 task :uninstall do
   vimperatorfiles = if ENV['VIMPERATORFILES']
-               ENV['VIMPERATORFILES']
-             elsif RUBY_PLATFORM =~ /(win|w)32$/
-               File.expand_path("~/vimperatorfiles")
-             else
-               File.expand_path("~/.vimperator")
-             end
+                      ENV['VIMPERATORFILES']
+                    elsif RUBY_PLATFORM =~ /(win|w)32$/
+                      File.expand_path("~/vimperatorfiles")
+                    else
+                      File.expand_path("~/.vimperator")
+                    end
   files.each do |file|
     target_file = File.join(vimperatorfiles, file)
     FileUtils.rm target_file
