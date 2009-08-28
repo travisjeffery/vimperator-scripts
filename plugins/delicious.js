@@ -6,23 +6,24 @@
 // Usage: if successfully posted you will see "done" echoed
 
 commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
-                        function(args) {
-							var url = "https://api.del.icio.us/v1/posts/add?";
-							url += "&url=" + encodeURIComponent(buffer.URL);
-							url += "&description=" + encodeURIComponent(buffer.title);
-							var ext = args.string.match(/"([^"]+)"/);
-							if (ext && ext.length > 0) {
-								url += "&extended=" + encodeURIComponent(ext[0].substr(1,ext[0].length);
-								url += "&tags=" + encodeURIComponent(args.string.substr(ext[0].length));
-							} else {
-								url += "&tags=" + encodeURIComponent(args.string);
-							}
-						 
-							var xhr = new XMLHttpRequest();
-							xhr.open("POST", url, false);
-							xhr.send(null);
-							var xml = (new DOMParser()).parseFromString(xhr.responseText, "text/xml");
-							var status = xml.getElementsByTagName('result')[0].getAttribute('code');
-											  
-							liberator.echo(status);
-						});
+		function(args) {
+			var url = "https://api.del.icio.us/v1/posts/add?";
+			url += "&url=" + encodeURIComponent(buffer.URL);
+			url += "&description=" + encodeURIComponent(buffer.title);
+			var ext = args.string.match(/"([^"]+)"/);
+			if (ext && ext.length > 0) {
+				url += "&extended=" + encodeURIComponent(ext[0].substr(1,ext[0].length));
+				url += "&tags=" + encodeURIComponent(args.string.substr(ext[0].length));
+			} else {
+				url += "&tags=" + encodeURIComponent(args.string);
+			}
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", url, false);
+			xhr.send(null);
+			var xml = (new DOMParser()).parseFromString(xhr.responseText, "text/xml");
+			var status = xml.getElementsByTagName('result')[0].getAttribute('code');
+			
+			liberator.echo(status);
+		}
+);
