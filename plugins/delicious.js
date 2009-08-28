@@ -11,8 +11,8 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
 							url += "&url=" + encodeURIComponent(buffer.URL);
 							url += "&description=" + encodeURIComponent(buffer.title);
 							var ext = args.string.match(/"([^"]+)"/);
-							if (ext) {
-								url += "&extended=" + encodeURIComponent(ext[0]);
+							if (ext && ext.length > 0) {
+								url += "&extended=" + encodeURIComponent(ext[0].substr(1,ext[0].length);
 								url += "&tags=" + encodeURIComponent(args.string.substr(ext[0].length));
 							} else {
 								url += "&tags=" + encodeURIComponent(args.string);
