@@ -1,4 +1,4 @@
-﻿// Vimperator Plugin: 'Delicious'
+// Vimperator Plugin: 'Delicious'
 // Last Change: 25-Aug-2009
 // License: MIT
 // Maintainer: Travis Jeffery <travisjeffery@gmail.com>
@@ -11,6 +11,7 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
 			url += "&url=" + encodeURIComponent(buffer.URL);
 			url += "&description=" + encodeURIComponent(buffer.title);
 			var re = new RegExp(/"([^"]+)"/);
+			var ext = args.string.match(re);
 			if (ext) {
 				url += "&extended=" + encodeURIComponent(ext[1]);
 				url += "&tags=" + encodeURIComponent(args.string.substr(ext[0].length));
