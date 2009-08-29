@@ -10,9 +10,9 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
 			var url = "https://api.del.icio.us/v1/posts/add?";
 			url += "&url=" + encodeURIComponent(buffer.URL);
 			url += "&description=" + encodeURIComponent(buffer.title);
-			var ext = args.string.match(/"([^"]+)"/);
-			if (ext && ext.length > 0) {
-				url += "&extended=" + encodeURIComponent(ext[0].substr(1,ext[0].length));
+			var re = new RegExp(/"([^"]+)"/);
+			if (ext) {
+				url += "&extended=" + encodeURIComponent(ext[1]);
 				url += "&tags=" + encodeURIComponent(args.string.substr(ext[0].length));
 			} else {
 				url += "&tags=" + encodeURIComponent(args.string);
