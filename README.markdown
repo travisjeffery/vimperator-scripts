@@ -6,7 +6,7 @@ Firefox's [Vimperator](http://vimperator.org/trac/wiki/Vimperator) extension.
 
 ### Install
        
-Copy delicious.js to your ~/.vimperator/plugins directory.
+Copy delicious.js to your ~/.vimperator/plugin directory.
 
 ### Usage
 Use by going to some site you want to bookmark and do :delicious followed by 
