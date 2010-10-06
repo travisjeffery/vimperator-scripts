@@ -15,11 +15,13 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
         url += "&description=" + encodeURIComponent(title);
         var tags;
         var statusString = '';
+        var extended;
 
         var re = new RegExp(/"([^"]+)"/);
         var ext = args.string.match(re);
         if (ext) {
-            url += "&extended=" + encodeURIComponent(ext[1]);
+            extended = encodedURIComponent(ext[1]);
+            url += "&extended=" + extended;
             tags = args.string.substr(ext[0].length);
         } else {
             tags = args.string;
@@ -44,12 +46,17 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
 
         //Twitter
         if(tags.match("for:@twitter")) {
-            if(title.length >= 110) {
-                title = title.substr(0,110).trim();
-                title += "...";
-                url += "&share_msg=" + encodeURIComponent(title);
+            //Use extended message if given
+            if(ext) {
+                url += "&share_msg=" + extended;
             } else {
-                url += "&share_msg=" + encodeURIComponent(title);
+                if(title.length >= 110) {
+                    title = title.substr(0,110).trim();
+                    title += "...";
+                    url += "&share_msg=" + encodeURIComponent(title);
+                } else {
+                    url += "&share_msg=" + encodeURIComponent(title);
+                }
             }
             url += "&recipients=" + encodeURIComponent("@twitter");
         }
