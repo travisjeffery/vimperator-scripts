@@ -37,7 +37,7 @@ commands.addUserCommand(['delicious'], "Save page as a bookmark on Delicious",
             url += "&shared=yes";
         }
 
-        //Remove superflous whitespace
+        //Remove superfluous whitespace
         var whitespace = new RegExp(/\s{2,}/);
         tags = tags.replace(whitespace, " ");
         tags = tags.trim();
